@@ -84,6 +84,48 @@ func (g *Game) distributeCharacters() {
 	}
 }
 
+// findCharacterByPartialName searches for a character that matches the given partial name
+// It returns the full name if found, or an empty string if no match or multiple matches
+func (g *Game) findCharacterByPartialName(partialName string) string {
+	// Convert partial name to lowercase for case-insensitive comparison
+	lowercasePartial := strings.ToLower(partialName)
+
+	var matchedName string
+	var matchCount int
+
+	for fullName := range g.Characters {
+		// Split the full name into parts (first name, last name)
+		nameParts := strings.Fields(fullName)
+
+		// Check if the partial name matches the full name, first name, or last name
+		fullNameLower := strings.ToLower(fullName)
+		if strings.Contains(fullNameLower, lowercasePartial) {
+			matchedName = fullName
+			matchCount++
+		} else if len(nameParts) > 0 && strings.ToLower(nameParts[0]) == lowercasePartial {
+			// First name exact match
+			matchedName = fullName
+			matchCount++
+		} else if len(nameParts) > 1 && strings.ToLower(nameParts[1]) == lowercasePartial {
+			// Last name exact match
+			matchedName = fullName
+			matchCount++
+		}
+	}
+
+	// Return the matched name if exactly one match was found
+	if matchCount == 1 {
+		return matchedName
+	} else if matchCount > 1 {
+		// If multiple matches, inform the player
+		fmt.Println("Multiple people match that name. Please be more specific.")
+		return ""
+	}
+
+	// No matches found
+	return ""
+}
+
 // Play starts the main game loop
 func (g *Game) Play() {
 	reader := bufio.NewReader(os.Stdin)
@@ -141,16 +183,17 @@ func (g *Game) Play() {
 				fmt.Println("Talk to whom? Use 'talk <person>'.")
 				continue
 			}
-			// Combine all remaining words as the person's name
-			personName := strings.Join(args[1:], " ")
-			// Capitalize each word in the person's name
-			words := strings.Fields(personName)
-			caser := cases.Title(language.English)
-			for i, word := range words {
-				words[i] = caser.String(word)
+			// Combine all remaining words as the person's partial name
+			partialName := strings.Join(args[1:], " ")
+
+			// Find the full character name
+			fullName := g.findCharacterByPartialName(partialName)
+			if fullName == "" {
+				fmt.Println("There is no one here by that name.")
+				continue
 			}
-			personName = strings.Join(words, " ")
-			g.talkToCharacter(personName)
+
+			g.talkToCharacter(fullName)
 			turnCount++
 			g.TurnsSinceKilling++ // Increment turns since killing
 
@@ -159,16 +202,17 @@ func (g *Game) Play() {
 				fmt.Println("Accuse whom? Use 'accuse <person>'.")
 				continue
 			}
-			// Combine all remaining words as the person's name
-			personName := strings.Join(args[1:], " ")
-			// Capitalize each word in the person's name
-			words := strings.Fields(personName)
-			caser := cases.Title(language.English)
-			for i, word := range words {
-				words[i] = caser.String(word)
+			// Combine all remaining words as the person's partial name
+			partialName := strings.Join(args[1:], " ")
+
+			// Find the full character name
+			fullName := g.findCharacterByPartialName(partialName)
+			if fullName == "" {
+				fmt.Println("There is no one here by that name.")
+				continue
 			}
-			personName = strings.Join(words, " ")
-			g.accuseCharacter(personName)
+
+			g.accuseCharacter(fullName)
 
 		case "clues":
 			g.showClues()
