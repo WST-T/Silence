@@ -56,6 +56,9 @@ func (g *Game) talkToCharacter(characterName string) {
 	fmt.Println("\nYou ask if they noticed anything suspicious before the murders.")
 	fmt.Println("\n"+characterName+":", "\""+character.Clue+"\"")
 
+	// NEW: Store the clue in collected clues
+	g.CollectedClues[characterName] = character.Clue
+
 	// If this is their spouse, they share a concerned look
 	if spouse, exists := g.Characters[character.Partner]; exists && spouse.IsAlive {
 		fmt.Printf("\n%s glances toward %s with a concerned expression.\n", characterName, character.Partner)
@@ -121,6 +124,14 @@ func (g *Game) showClues() {
 			if !character.IsAlive {
 				fmt.Printf("  - %s (Partner: %s)\n", name, character.Partner)
 			}
+		}
+	}
+
+	// NEW: Display collected clues from characters
+	if len(g.CollectedClues) > 0 {
+		fmt.Println("\nClues from Conversations:")
+		for name, clue := range g.CollectedClues {
+			fmt.Printf("  %s: \"%s\"\n", name, clue)
 		}
 	}
 

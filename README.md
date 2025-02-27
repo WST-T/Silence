@@ -27,6 +27,29 @@ But tread carefully. The killer is watching your every move, and time is running
 
 ## 💻 Installation
 
+## 📥 Easy Installation with Pre-compiled Binaries
+
+You can play Silence without installing Go! Simply download the appropriate binary for your operating system from the [Releases page](https://github.com/WST-T/Silence/releases).
+
+### Windows
+1. Download `silence-windows-amd64.exe`
+2. Double-click the file to start the game
+
+### macOS
+1. Download `silence-macos-amd64`
+2. Open Terminal and navigate to the download location
+3. Make the file executable: `chmod +x silence-macos-amd64`
+4. Run the game: `./silence-macos-amd64`
+
+### Linux
+1. Download `silence-linux-amd64`
+2. Open Terminal and navigate to the download location
+3. Make the file executable: `chmod +x silence-linux-amd64`
+4. Run the game: `./silence-linux-amd64`
+
+## 💻 Building from Source
+If you prefer to build the game yourself or want to contribute to development, follow these steps:
+
 ```bash
 # Clone this repository
 git clone https://github.com/WST-T/Silence.git
@@ -70,4 +93,4 @@ MIT © 2025 文森特
 
 *"I'm telling you, I heard Sarah's voice last night, whispering from the walls. She's still here. Watching us. Waiting for justice..."* 👻
 
-*— Last diary entry of Elizabeth Thompson, found beside her body*
+*— Last diary entry of Penny Roronoa, found beside her body*

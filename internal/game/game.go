@@ -24,9 +24,10 @@ type Game struct {
 	CurrentTurn       int
 	GameOver          bool
 	PlayerLocation    string
-	LastKilled        []string // Names of the last characters killed
-	MurderCount       int      // Number of murder events
-	TurnsSinceKilling int      // Turns elapsed since last murder event
+	LastKilled        []string          // Names of the last characters killed
+	MurderCount       int               // Number of murder events
+	TurnsSinceKilling int               // Turns elapsed since last murder event
+	CollectedClues    map[string]string // NEW: Track clues from conversations
 }
 
 // NewGame initializes a new game
@@ -36,6 +37,7 @@ func NewGame() *Game {
 		GameOver:          false,
 		MurderCount:       0,
 		TurnsSinceKilling: 0,
+		CollectedClues:    make(map[string]string),
 	}
 
 	// Initialize characters, locations, and other game elements
