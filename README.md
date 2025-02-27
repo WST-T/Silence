@@ -70,8 +70,8 @@ Once the game begins, you'll find yourself in the Dining Room of Blackwood Manor
 
 - `look` - Examine your surroundings 👀
 - `go <location>` - Move to another room (e.g., "go Library") 🚶
-- `talk <person>` - Speak with someone in the room (e.g., "talk Robert Thompson") 💬
-- `accuse <person>` - Accuse someone of being the killer (choose wisely...) ☝️
+- `talk <person>` - Speak with someone in the room (e.g., "talk Souhib Trabelsi" or just "talk souhib" would work too for my lazy typer) 💬
+- `accuse <person>` - Accuse someone of being the killer (choose wisely...) (e.g., "accuse Guillaume Mardrus" or just "accuse guillaume" would work too) ☝️
 - `clues` - Review your collected information 🔎
 - `locations` - See all accessible locations in the manor 🗺️
 - `status` - Check which guests are still alive and where they are 💓
