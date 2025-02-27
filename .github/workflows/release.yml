@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*' # This workflow triggers when you push a tag that starts with "v"
 
+# Add this permissions block
+permissions:
+  contents: write # This allows the workflow to create releases
+
 jobs:
   build:
     name: Build for ${{ matrix.os }}
