@@ -35,10 +35,10 @@ git clone https://github.com/WST-T/Silence.git
 cd Silence
 
 # Build the game
-go build -o bin/silence ./cmd/silence
+go build -o Silence ./cmd/silence
 
 # Run the game
-./bin/silence
+./Silence
 ```
 
 ## 🎲 How to Play
