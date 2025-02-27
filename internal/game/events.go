@@ -56,6 +56,13 @@ func (g *Game) executeMurders() {
 	deathMethod1 := deathMethods[rng.Intn(len(deathMethods))]
 	deathMethod2 := deathMethods[rng.Intn(len(deathMethods))]
 
+	// Remove the dead characters from their locations
+	removeCharacterFromLocation(g, victim1)
+	removeCharacterFromLocation(g, victim2)
+
+	g.Characters[victim1].Location = deathLocation1
+	g.Characters[victim2].Location = deathLocation2
+
 	// Announce the deaths
 	fmt.Printf("\n%s %s in the %s!\n", victim1, deathMethod1, deathLocation1)
 	fmt.Printf("%s %s in the %s!\n", victim2, deathMethod2, deathLocation2)
@@ -65,10 +72,6 @@ func (g *Game) executeMurders() {
 
 	// Increment murder count
 	g.MurderCount++
-
-	// Remove the dead characters from their locations
-	removeCharacterFromLocation(g, victim1)
-	removeCharacterFromLocation(g, victim2)
 
 	fmt.Println("\nThe remaining guests are terrified. You must solve this mystery quickly before more lives are lost!")
 	fmt.Println("----------------------------")

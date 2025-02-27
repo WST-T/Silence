@@ -59,9 +59,16 @@ func (g *Game) talkToCharacter(characterName string) {
 	// NEW: Store the clue in collected clues
 	g.CollectedClues[characterName] = character.Clue
 
-	// If this is their spouse, they share a concerned look
+	// Even more nuanced version
 	if spouse, exists := g.Characters[character.Partner]; exists && spouse.IsAlive {
-		fmt.Printf("\n%s glances toward %s with a concerned expression.\n", characterName, character.Partner)
+		if spouse.Location == g.PlayerLocation {
+			// Spouse is in the same room
+			fmt.Printf("\n%s glances toward %s with a concerned expression.\n", characterName, character.Partner)
+		} else {
+			// Spouse is alive but in a different room
+			fmt.Printf("\n%s seems distracted, occasionally glancing toward the door as if worried about %s.\n",
+				characterName, character.Partner)
+		}
 	}
 
 	// If their spouse is dead, they show grief
