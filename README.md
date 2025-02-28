@@ -69,7 +69,7 @@ go build -o Silence ./cmd/silence
 Once the game begins, you'll find yourself in the Dining Room of Blackwood Manor. From here, you can:
 
 - `look` - Examine your surroundings 👀
-- `go <location>` - Move to another room (e.g., "go Library") 🚶
+- `go <location>` - Move to another room (e.g., "go Library" or "go library" is goodgood too) 🚶
 - `talk <person>` - Speak with someone in the room (e.g., "talk Souhib Trabelsi" or just "talk souhib" would work too for my lazy typer) 💬
 - `accuse <person>` - Accuse someone of being the killer (choose wisely...) (e.g., "accuse Guillaume Mardrus" or just "accuse guillaume" would work too) ☝️
 - `clues` - Review your collected information 🔎
